@@ -1,0 +1,23 @@
+{
+  "name": "topicos_banco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElissonAlvesSilva/api-topicos-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElissonAlvesSilva/api-topicos-nodejs/issues"
+  },
+  "homepage": "https://github.com/ElissonAlvesSilva/api-topicos-nodejs#readme",
+  "dependencies": {
+    "mongoose": "^5.2.5"
+  }
+}
