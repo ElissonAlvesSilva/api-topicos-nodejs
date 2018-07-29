@@ -45,6 +45,24 @@ URL:
 	"nomeFantasia": "Empresa 1 c"
 }
 ```
+## Exemplo de requisição (POST) - vaga:
+URL:
+`localhost:4000/v1/empresas`
+### Sempre que criar uma vaga, obter anteriormente o id da empresa para colocar na requisição, atraves do método get na url:
+`localhost:4000/v1/empresas
+
+
+```
+{
+	"nome": "Desenvolvedor WEB",
+	"tipoContrato": "CLT",
+	"prazo":"2018-09-08",
+	"dataCadastro":"2018-09-08",
+	"descricaoVaga": "dev web",
+	"statusVaga": "Ativa",
+	"empresa": "5b5ddab0f2fe286c29a29c75"
+}
+```
 
 	
 
