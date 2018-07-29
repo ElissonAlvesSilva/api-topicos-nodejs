@@ -7,6 +7,7 @@ module.exports = app => {
 
 
     app.route('/v1/candidatos')
+
         .get(controller.listar)
         .post(controller.criar_candidato);
 

@@ -43,38 +43,37 @@ exports.lista_por_id = (req, res) => {
 };
 
 exports.criar_empresa = (req, res) => {
+    if (!validaCampos(req, res)) {
+        empresa.findOne({
+            cnpj: req.body.cnpj
+        }).then(exist => {
 
-    empresa.findOne({
-        cnpj: req.body.cnpj
-    }).then(exist => {
+            if (!exist) {
 
-        if (!exist) {
+                let imageUrl;
+                if (req.body.foto !== undefined && req.body.foto !== '')
+                    imageUrl = decode_base64(req.body.foto, req.body.filename, res);
+                else
+                    imageUrl = undefined;
 
-            let imageUrl;
-            if (req.body.foto !== undefined && req.body.foto !== '')
-                imageUrl = decode_base64(req.body.foto, req.body.filename, res);
-            else
-                imageUrl = undefined;
-
-            let emp = new Empresa(req.body, imageUrl);
-            let jsonObject = JSON.parse(emp.createPost());
-            empresa.create(jsonObject)
-                .then(data => {
-                    res.send({
-                        empresa: data
+                let emp = new Empresa(req.body, imageUrl);
+                let jsonObject = JSON.parse(emp.createPost());
+                empresa.create(jsonObject)
+                    .then(data => {
+                        res.send({
+                            empresa: data
+                        });
+                    })
+                    .catch(error => {
+                        res.status(400).send(error);
                     });
-                })
-                .catch(error => {
-                    res.status(400).send(error);
+            } else {
+                res.status(404).send({
+                    message: 'empresa já cadastrada'
                 });
-        } else {
-            res.status(404).send({
-                message: 'empresa já cadastrada'
-            });
-        }
-    });
-
-
+            }
+        });
+    }
 
 };
 
@@ -144,4 +143,26 @@ function decode_base64(base64str, _filename, response) {
         });
     }
 
+}
+
+function validaCampos(request, response) {
+    let erro = true;
+    request.assert('cnpj', 'O cnpj é obrigatório').notEmpty();
+    request.assert('razaoSocial', 'O razaoSocial é obrigatório').notEmpty();
+    request.assert('nomeFantasia', 'O nomeFantasia é obrigatório').notEmpty();
+    request.assert('status', 'O status é obrigatório').notEmpty();
+
+    let erros = request.validationErrors();
+
+    if (erros) {
+        response.status(404).send({
+            status: 'erro',
+            mensagem: 'Erro ao cadastrar empresa',
+            stack: erros
+        });
+        return erro;
+    } else {
+        erro = false;
+        return erro;
+    }
 }

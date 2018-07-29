@@ -43,24 +43,25 @@ exports.lista_por_id = (req, res) => {
 };
 
 exports.criar_vaga = (req, res) => {
+    if (!validaCampos(req, res)) {
+        let imageUrl;
+        if (req.body.foto !== undefined && req.body.foto !== '')
+            imageUrl = decode_base64(req.body.foto, req.body.filename, res);
+        else
+            imageUrl = undefined;
 
-    let imageUrl;
-    if (req.body.foto !== undefined && req.body.foto !== '')
-        imageUrl = decode_base64(req.body.foto, req.body.filename, res);
-    else
-        imageUrl = undefined;
-
-    let vag = new Vaga(req.body, imageUrl);
-    let jsonObject = JSON.parse(vag.createPost());
-    vaga.create(jsonObject)
-        .then(data => {
-            res.send({
-                vaga: data
+        let vag = new Vaga(req.body, imageUrl);
+        let jsonObject = JSON.parse(vag.createPost());
+        vaga.create(jsonObject)
+            .then(data => {
+                res.send({
+                    vaga: data
+                });
+            })
+            .catch(error => {
+                res.status(400).send(error);
             });
-        })
-        .catch(error => {
-            res.status(400).send(error);
-        });
+    }
 };
 
 
@@ -129,4 +130,29 @@ function decode_base64(base64str, _filename, response) {
         });
     }
 
+}
+
+function validaCampos(request, response) {
+    let erro = true;
+    request.assert('nome', 'O nome é obrigatório').notEmpty();
+    request.assert('tipoContrato', 'O tipoContrato é obrigatório').notEmpty();
+    request.assert('prazo', 'O prazo é obrigatório').notEmpty();
+    request.assert('dataCadastro', 'A dataCadastro é obrigatório').notEmpty();
+    request.assert('descricaoVaga', 'A descricaoVaga é obrigatório').notEmpty();
+    request.assert('statusVaga', 'O statusVaga é obrigatório').notEmpty();
+    request.assert('empresa', 'A empresa é obrigatório').notEmpty();
+
+    let erros = request.validationErrors();
+
+    if (erros) {
+        response.status(404).send({
+            status: 'erro',
+            mensagem: 'Erro ao cadastrar vaga',
+            stack: erros
+        });
+        return erro;
+    } else {
+        erro = false;
+        return erro;
+    }
 }

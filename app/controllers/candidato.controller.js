@@ -10,9 +10,9 @@ const path = require('path');
 const uuid = require('node-uuid');
 
 const vagas = mongoose.model('vagas');
-const empresa = mongoose.model('empresa');
 const candidato = mongoose.model('candidato');
 const Candidato = require('./../class/candidato.class');
+
 
 
 exports.listar = (req, res) => {
@@ -45,36 +45,37 @@ exports.lista_por_id = (req, res) => {
 };
 
 exports.criar_candidato = (req, res) => {
+    if (!validaCampos(req, res)) {
+        candidato.findOne({
+            cpf: req.body.cpf
+        }).then(exist => {
 
-    candidato.findOne({
-        cpf: req.body.cpf
-    }).then(exist => {
+            if (!exist) {
 
-        if (!exist) {
+                let imageUrl;
+                if (req.body.foto !== undefined && req.body.foto !== '')
+                    imageUrl = decode_base64(req.body.foto, req.body.filename, res);
+                else
+                    imageUrl = undefined;
 
-            let imageUrl;
-            if (req.body.foto !== undefined && req.body.foto !== '')
-                imageUrl = decode_base64(req.body.foto, req.body.filename, res);
-            else
-                imageUrl = undefined;
-
-            let cand = new Candidato(req.body, imageUrl);
-            let jsonObject = JSON.parse(cand.createPost());
-            candidato.create(jsonObject)
-                .then(data => {
-                    res.send({
-                        candidato: data
+                let cand = new Candidato(req.body, imageUrl);
+                let jsonObject = JSON.parse(cand.createPost());
+                candidato.create(jsonObject)
+                    .then(data => {
+                        res.send({
+                            candidato: data
+                        });
+                    })
+                    .catch(error => {
+                        res.status(400).send(error);
                     });
-                })
-                .catch(error => {
-                    res.status(400).send(error);
+            } else {
+                res.status(404).send({
+                    message: 'Candidato já cadastrado'
                 });
-        } else {
-            res.status(404).send({
-                message: 'Candidato já cadastrado'
-            });
-        }
-    });
+            }
+        });
+    }
 
 
 
@@ -264,7 +265,6 @@ function removeFile(src) {
 }
 
 function adicionarCandidatura(idVaga, idCandidato, path) {
-    console.log(path);
     candidato.findByIdAndUpdate(idCandidato, {
             $push: {
                 candidatura: {
@@ -285,4 +285,28 @@ function removeRootPath(path) {
     let _path = path;
     _path = _path.replace('app/public/', '');
     return _path;
+}
+
+function validaCampos(request, response) {
+    let erro = true;
+    request.assert('nome', 'O nome é obrigatório').notEmpty();
+    request.assert('sobrenome', 'O sobrenome é obrigatório').notEmpty();
+    request.assert('email', 'O email é obrigatório').notEmpty();
+    request.assert('email', 'Email inválido').isEmail();
+    request.assert('cpf', 'O cpf é obrigatório').notEmpty();
+    request.assert('senha', 'A senha é obrigatória').notEmpty();
+
+    let erros = request.validationErrors();
+
+    if (erros) {
+        response.status(404).send({
+            status: 'erro',
+            mensagem: 'Erro ao cadastrar candidato',
+            stack: erros
+        });
+        return erro;
+    } else {
+        erro = false;
+        return erro;
+    }
 }
