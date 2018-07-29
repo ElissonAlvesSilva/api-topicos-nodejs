@@ -1,5 +1,5 @@
 # api-rhapp
-
+## Equipe: Elisson Alves Silva
 Uma RESTFul API simples em Node JS, criada por [Elisson Silva](https://github.com/ElissonAlvesSilva), para utilização no trabalho de tópicos e Projetos WEB.
 
 ---
