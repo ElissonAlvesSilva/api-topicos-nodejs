@@ -16,10 +16,18 @@ Uma RESTFul API simples em Node JS, criada por [Elisson Silva](https://github.co
 4) Para criar os endpoints utilize a requisicao POST na url abaixo:
 `http://localhost:4000/v1/endpoints`
 
-## Exemplo de requisição (POST):
+## Exemplo de requisição (POST) - candidatos:
 
 URL:
-`localhost:8080/produto`
+`localhost:4000/v1/candidatos`
+
+```{
+	"nome": "Elisson ",
+	"sobrenome": "Alves Silva",
+	"email":"alvesilva@gmail.com",
+	"foto": "imagem em base64",
+	"senha": "123456@@"
+}
 
 
 	
