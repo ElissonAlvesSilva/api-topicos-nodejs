@@ -51,27 +51,13 @@ const vagasSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'candidato'
     }],
-    empres: {
+    empresa: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'empresa'
     },
     count: {
         type: Number,
         default: 0
-    },
-    privacao: {
-        nomeEmpresa: {
-            type: Boolean,
-            default: false
-        },
-        segmentoEmpresa: {
-            type: Boolean,
-            default: false
-        },
-        endereco: {
-            type: Boolean,
-            default: false
-        }
     }
 });
 

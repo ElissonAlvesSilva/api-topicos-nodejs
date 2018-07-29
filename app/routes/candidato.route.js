@@ -12,10 +12,8 @@ module.exports = app => {
 
     app.route('/v1/candidatos/:id')
         .get(controller.listar)
-        .put(controller.atualiza);
-        //.post(controller.candidatar);
-
-    app.route('/v1/candidatos/auth/candidato')
+        .put(controller.atualiza)
+        .post(upload.upload_cv.single('cv'), controller.candidatar);
 
 
 

@@ -80,3 +80,12 @@
 {"level":"info","message":"::1 - - [29/Jul/2018:04:35:51 +0000] \"PUT /v1/candidatos/5b5d435fa4804f5e1679ed17 HTTP/1.1\" 200 267\n","timestamp":"2018-07-29T04:35:51.201Z"}
 {"level":"info","message":"::1 - - [29/Jul/2018:04:36:00 +0000] \"PUT /v1/candidatos/5b5d435fa4804f5e1679ed17 HTTP/1.1\" 200 266\n","timestamp":"2018-07-29T04:36:00.295Z"}
 {"level":"info","message":"::1 - - [29/Jul/2018:04:36:06 +0000] \"PUT /v1/candidatos/5b5d435fa4804f5e1679ed17 HTTP/1.1\" 200 267\n","timestamp":"2018-07-29T04:36:06.409Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:16:59 +0000] \"POST /v1/empresas HTTP/1.1\" 200 115\n","timestamp":"2018-07-29T15:16:59.245Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:18:02 +0000] \"POST /v1/empresas HTTP/1.1\" 404 36\n","timestamp":"2018-07-29T15:18:02.972Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:18:08 +0000] \"POST /v1/empresas HTTP/1.1\" 200 147\n","timestamp":"2018-07-29T15:18:08.512Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:20:31 +0000] \"POST /v1/vagas HTTP/1.1\" 200 301\n","timestamp":"2018-07-29T15:20:31.959Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:25:03 +0000] \"GET /v1/candidatos HTTP/1.1\" 200 515\n","timestamp":"2018-07-29T15:25:03.413Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:25:30 +0000] \"POST /v1/candidatos/5b5d435fa4804f5e1679ed17 HTTP/1.1\" 201 368\n","timestamp":"2018-07-29T15:25:30.009Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:26:03 +0000] \"GET /v1/candidatos HTTP/1.1\" 200 670\n","timestamp":"2018-07-29T15:26:03.810Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:27:04 +0000] \"GET /v1/vagas/ HTTP/1.1\" 200 464\n","timestamp":"2018-07-29T15:27:04.407Z"}
+{"level":"info","message":"::1 - - [29/Jul/2018:15:31:00 +0000] \"PUT /v1/candidatos/5b5d435fa4804f5e1679ed17 HTTP/1.1\" 200 423\n","timestamp":"2018-07-29T15:31:00.979Z"}

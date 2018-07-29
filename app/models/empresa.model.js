@@ -20,25 +20,11 @@ const empresaSchema = mongoose.Schema({
         type: String,
     },
     endereco: {
-        cep: {
-            type: String,
-        },
-        logradouro: {
-            type: String,
-        },
-        bairro: {
-            type: String,
-        },
-        cidade: {
-            type: String,
-        },
-        estado: {
-            type: String,
-        }
+        type: String
     },
     status: {
         type: String,
-        enum: ['Ativo', 'Inativo'],
+        enum: ['Ativa', 'Inativa'],
         require: [true, 'O status da empresa é requerido'],
         default: 'Ativo'
     },
