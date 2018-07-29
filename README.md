@@ -16,6 +16,8 @@ Uma RESTFul API simples em Node JS, criada por [Elisson Silva](https://github.co
 4) Para criar os endpoints utilize a requisicao POST na url abaixo:
 `http://localhost:4000/v1/endpoints`
 
+5) Os métodos PUT e PATCH funcionam da mesma forma, ou seja, há uma validação se vai ser alterado um ou mais campos.
+
 ## Exemplo de requisição (POST) - candidatos:
 
 URL:
