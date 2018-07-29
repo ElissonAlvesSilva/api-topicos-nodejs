@@ -27,25 +27,9 @@ const candidatoSchema = mongoose.Schema({
         trim: true,
         min: [6, 'A senha deve conter mais que 6 caracteres']
     },
-    resetSenha: {
-        type: String
-    },
-    dataNascimento: {
-        type: Date,
-        require: [true, 'A data de Nascimento é requerida']
-    },
-    
-    tel1: {
-        type: String,
-        require: [true, 'Telefone é requerido']
-    },
-    tel2: {
-        type: String
-    },
-    sexo: {
-        type: String,
-        enum: ['Masculino', 'Feminino'],
-        require: [true, 'Sexo é requerido']
+    cpf: {
+        type: mongoose.Schema.Types.String,
+        require: [true, 'CPF é requerido']
     },
     curriculum: {
         type: String
@@ -63,10 +47,6 @@ const candidatoSchema = mongoose.Schema({
         cv: {
             type: String
         }
-    }],
-    cursos: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'curso'
     }],
     foto: {
         type: String

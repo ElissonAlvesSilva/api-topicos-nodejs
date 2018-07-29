@@ -1,4 +1,4 @@
-require('../config/database.config')('mongodb://localhost:27017/rhmobi');
+require('../config/database.config')('mongodb://localhost:27017/rhapp');
 
 const { app } = require('../config/express.config');
 const port = global.PORT || '4000';

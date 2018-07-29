@@ -1,5 +1,5 @@
 'use strict'
-const upload = require('../util/storage.util');
+const upload = require('./../utils/storage.util');
 
 module.exports = app => {
 
