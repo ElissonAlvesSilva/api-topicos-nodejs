@@ -21,14 +21,30 @@ Uma RESTFul API simples em Node JS, criada por [Elisson Silva](https://github.co
 URL:
 `localhost:4000/v1/candidatos`
 
-```{
+```
+{
 	"nome": "Elisson ",
 	"sobrenome": "Alves Silva",
 	"email":"alvesilva@gmail.com",
 	"foto": "imagem em base64",
+	"cpf": "1234123123123123"
 	"senha": "123456@@"
-}
+} 
+```
 
+## Exemplo de requisição (POST) - empresa:
+
+URL:
+`localhost:4000/v1/empresas`
+
+```
+{
+	"cnpj": "4565289200147",
+	"razaoSocial": "Empresa 1 ltda",
+	"ramoAtuacao": "Eletrônicos e Eletrodomésticos",
+	"nomeFantasia": "Empresa 1 c"
+}
+```
 
 	
 
